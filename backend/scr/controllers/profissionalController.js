@@ -1,3 +1,5 @@
+/* eslint-disable object-shorthand */
+/* eslint-disable no-unused-vars */
 /**
  *  Arquivo: backend\scr\controllers\profissionalController.js
  * Descrição: arquivo responável pelas ações CRUD relacionadas a entidade profissão
@@ -19,9 +21,9 @@ const getTodosProfissionais =(req, res)=>{
         .from('profissionais')
         .join('profissoes','profissionais.tipodeprofissao', '=','profissoes.id')
     .then((response)=>{
-        res.json(response)
+        res.json({error:false, data: response})
     })
-    .catch(err=> res.status(400).json({message: 'Nao foi possivel acessar as profissoes'}))
+    .catch(err=> res.status(400).json({error: true, message: 'Nao foi possivel acessar as profissoes'}))
 
 };
 
@@ -31,7 +33,7 @@ const createNovoProfissional =(req, res)=>{
     // fazer a validacao do input
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        res.json({erros: errors})
+        res.json({erros: true, message: errors})
     }
     else{
         const{nome, email, telefone, situacao, profissaoId} = req.body;
@@ -49,9 +51,9 @@ const createNovoProfissional =(req, res)=>{
             createdat: new Date()
         })
         .then(()=>{
-           res.json({message: 'cadastro realizado com sucesso!'})
+           res.json({error: false, message: 'cadastro realizado com sucesso!'})
         })
-        .catch(err =>res.status(400).json({message: 'Nao foi possivel cadastrar novo profissional'}))
+        .catch(err =>res.status(400).json({error:true,message: 'Nao foi possivel cadastrar novo profissional'}))
     }
 };
 
@@ -61,7 +63,7 @@ const editProfissional =(req, res)=>{
     // fazer a validacao do input
     const errors = validationResult(req);
     if(!errors.isEmpty()){
-        res.json({erros: errors})
+        res.json({erros: true, message: errors})
     }
     else{
         const{id, nome, email, telefone, situacao, profissaoId} = req.body;
@@ -79,9 +81,9 @@ const editProfissional =(req, res)=>{
             updatedat: new Date()
         })
         .then(()=>{
-           res.json({message: 'atualizacao realizada com sucesso!'})
+           res.json({error:false, message: 'atualizacao realizada com sucesso!'})
         })
-        .catch(err =>res.status(400).json({message: 'Nao foi possivel atualizar o cadastro do profissional'}))
+        .catch(err =>res.status(400).json({error:true, message: 'Nao foi possivel atualizar o cadastro do profissional'}))
     }
 };
 
