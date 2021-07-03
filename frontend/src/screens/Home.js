@@ -1,19 +1,40 @@
 import React from 'react';
-// import { Grid } from '@material-ui/core';
+import { useHistory} from 'react-router-dom';
+import {Work, 
+     AddCircle, 
+     Person, 
+     PersonAdd} from '@material-ui/icons';
 import Card from '../components/Cards/card';
 import './Home.css'
 
 
-
-function Home() {
+function Home() {// eslint-disable-next-line prefer-const
+    let history = useHistory();
     
+    const onListarProfissionais=(()=>{
+        history.push('/listarProfissionais')
+    });
+    
+    const onListarProfissao =(()=>{
+        history.push('/listarProfissoes')
+    });
+    
+    const onCadastrarProfissional =(()=>{
+        history.push('/novoProfissional')
+    });
+    
+    const onCadastrarProfissao =(()=>{
+        history.push('/novaProfissao')
+    })
+    
+
   return (
     <div className =" home-screen">
        <div className ="home-screen-items">
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+        <Card icon={Person} btnText='Listar Profissionais' onClickBtn={onListarProfissionais}/>
+        <Card icon={Work} btnText='Listar Profissões'onClickBtn={onListarProfissao}/>
+        <Card icon={PersonAdd} btnText='Cadastrar Profissional'onClickBtn={onCadastrarProfissional}/>
+        <Card icon ={AddCircle} btnText='Cadastrar Profissões'onClickBtn={onCadastrarProfissao}/>
         </div>
         </div>
 
@@ -22,42 +43,3 @@ function Home() {
 }
 
 export default Home;
-
-/*
-<div className =" home-screen">
-        <div className ="home-screen-items">
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
-        </div>
-        
-    </div>
-
-< Grid container spacing={0}
-    direction="column"
-    alignItems="center"
-    align = "center"
-    justify="center">
-    <Grid container spacing={3} >
-      <Grid item xs={false} sm={2} />
-      <Grid item xs={12} sm={4}>
-          <Card/>
-      </Grid>
-      <Grid item xs={12} sm={4}>
-          <Card/>
-      </Grid>
-      <Grid item xs={false} sm={2} />
-    </Grid>
-    <Grid container spacing={3} >
-      <Grid item xs={false} sm={2} />
-      <Grid item xs={12} sm={4}>
-          <Card/>
-      </Grid>
-      <Grid item xs={12} sm={4}>
-          <Card/>
-      </Grid>
-      <Grid item xs={false} sm={2} />
-    </Grid>
-    </Grid>
-*/
