@@ -107,7 +107,7 @@ const rows = [
     createData('Luiz','CEO', 'ATIVO', 'telefone','email'),
 ];
 
-export default function CollapsibleTable() {
+export default function TableProfissionais() {
     
   return (
     <TableContainer component={Paper} style={{width: '90%'}}>

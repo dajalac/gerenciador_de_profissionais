@@ -1,13 +1,13 @@
 
 import React from 'react';
-import CollapsibleTable from '../components/Tables/TableProfissionais';
-import './ListarProfissionais.css'
+import TableProfissionais from '../components/Tables/TableProfissionais';
+import './ListarEntidades.css'
 
 
 function ListarProfissionais() {
     return (
-        <divi className ="profssionais-table-position">
-            <CollapsibleTable/>
+        <divi className ="entity-table-position">
+            <TableProfissionais/>
         </divi>
     )
 }

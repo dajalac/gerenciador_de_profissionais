@@ -1,10 +1,13 @@
-    import React from 'react'
+    import React from 'react';
+    import TableProfissoes from '../components/Tables/TableProfissoes';
+    import './ListarEntidades.css';
+
     
     function ListarProfissoes() {
         return (
-            <div>
-                Listar Profissoes
-            </div>
+            <divi className ="entity-table-position">
+            <TableProfissoes/>
+        </divi>
         )
     }
     
