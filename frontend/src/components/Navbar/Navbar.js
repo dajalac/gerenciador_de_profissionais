@@ -39,13 +39,13 @@ function Navbar() {
                     
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/novoProfissional'> Cadaster Profissional</Link>
+                        <Link to ='/novoProfissional'> Cadastrar Profissional</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
                         <Link to ='/listarProfissoes'>Ver Profissoes</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/novaProfissao'> Cadaster Profissao</Link>
+                        <Link to ='/novaProfissao'> Cadastrar Profissao</Link>
                     </li>
                     <li className ='navbar-sidebar-links sidebar-signout-menu'>
                         {/* For now it will direct to home page */}

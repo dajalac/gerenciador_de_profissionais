@@ -1,0 +1,25 @@
+.forms-container{
+    width: 50%;
+    display:flex;
+    justify-content: center;
+    box-shadow: 0  1px 4px rgb(0,0,0,0.4);
+    
+}
+
+.btn-container{
+    width: 80%;
+}
+
+@media (max-width: 600px){
+    .forms-container{
+        width: 90%;
+    }
+}
+@media (max-width: 500px){
+    .forms-container{
+        width: 100%;
+        box-shadow:none
+    }
+}
+
+

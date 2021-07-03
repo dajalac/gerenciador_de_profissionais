@@ -1,12 +1,12 @@
 
 import React from 'react';
 import TableProfissionais from '../components/Tables/TableProfissionais';
-import './ListarEntidades.css'
+import './ScreensFormat.css'
 
 
 function ListarProfissionais() {
     return (
-        <divi className ="entity-table-position">
+        <divi className ="screen-position">
             <TableProfissionais/>
         </divi>
     )
