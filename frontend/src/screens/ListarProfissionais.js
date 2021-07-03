@@ -1,10 +1,14 @@
-import React from 'react'
+
+import React from 'react';
+import CollapsibleTable from '../components/Tables/TableProfissionais';
+import './ListarProfissionais.css'
+
 
 function ListarProfissionais() {
     return (
-        <div>
-            Todos profissionais
-        </div>
+        <divi className ="profssionais-table-position">
+            <CollapsibleTable/>
+        </divi>
     )
 }
 
