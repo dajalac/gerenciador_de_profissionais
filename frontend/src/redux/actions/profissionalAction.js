@@ -1,0 +1,36 @@
+/* eslint-disable import/prefer-default-export */
+
+
+export const CREATE_PROFISSIONAL = 'CREATE_PROFISSIONAL';
+export const createProfissional = novoProfissional  =>({
+    type: CREATE_PROFISSIONAL,
+    payload: {novoProfissional  }
+});
+
+export const CREATE_PROFISSIONAL_FAILURE = 'CREATE_PROFISSIONAL_FAILURE';
+export const createProfissionalFailure = ()=>({
+    type: CREATE_PROFISSIONAL_FAILURE
+});
+
+
+export const LISTAR_PROFISSIONAIS = 'LISTAR_PROFISSIONAIS';
+export const listarProfissionais = ()=>({
+    type:LISTAR_PROFISSIONAIS 
+});
+
+export const LISTAR_PROFISSIONAIS_FAILURE = 'LISTAR_PROFISSIONAIS_FAILURE';
+export const listarProfissionaisFailure = ()=>({
+    type:LISTAR_PROFISSIONAIS_FAILURE 
+});
+
+
+export const EDITAR_PROFISSIONAL = 'EDITAR_PROFISSIONAL';
+export const editarProfissional =() =>({
+    type: EDITAR_PROFISSIONAL,
+});
+
+export const EDITAR_PROFISSIONAL_FAILURE = 'EDITAR_PROFISSIONAL_FAILURE';
+export const editarProfissionalFailure = profissionalEditado =>({
+    type: EDITAR_PROFISSIONAL_FAILURE,
+    payload: profissionalEditado
+});
