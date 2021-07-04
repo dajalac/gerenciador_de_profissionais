@@ -9,11 +9,11 @@ import {createProfissional,
 export const loadProfissionais = () => async (dispatch)=>{
     const response = await axios.get('/api/profissional/');
 
-    if (response.error){
+    if (response.data.error){
         dispatch(listarProfissionaisFailure())
     }
     else{
-        dispatch(listarProfissionais(response.data))
+        dispatch(listarProfissionais(response.data.data))
     }   
 };
 

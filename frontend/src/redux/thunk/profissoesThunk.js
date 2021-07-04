@@ -11,12 +11,14 @@ import {createProfissao,
 
 export const loadProfissoes = () => async (dispatch)=>{
     const response = await axios.get('/api/profissao/');
-
-    if (response.error){
+ 
+    if (response.data.error){
         dispatch(listarProfissoesFailue())
+    
     }
     else{
-        dispatch(listarProfissoes(response.data))
+        dispatch(listarProfissoes(response.data.data))
+        
     }   
 };
 

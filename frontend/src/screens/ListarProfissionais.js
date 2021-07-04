@@ -1,15 +1,39 @@
 
-import React from 'react';
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {loadProfissionais} from  '../redux/thunk/profissionaisThunk';
 import TableProfissionais from '../components/Tables/TableProfissionais';
 import './ScreensFormat.css'
 
 
-function ListarProfissionais() {
+function ListarProfissionais({todos, onGetProfissionais}) {
+
+    useEffect(()=>{
+        onGetProfissionais()
+        
+    },[])
+    
+    console.log(`segundo ${todos}`)
+
+
+
     return (
-        <divi className ="screen-position">
-            <TableProfissionais/>
-        </divi>
+        
+        <div className ="screen-position">
+            <TableProfissionais profissionais={todos}/>
+        </div>
     )
+
 }
 
-export default ListarProfissionais
+const mapStateToProps = (state) =>({
+    
+    todos: state.getProfissionais
+    
+})
+
+const mapDispatchToProps = dispatch =>({
+    onGetProfissionais: ()=>dispatch(loadProfissionais())
+    })
+
+export default connect(mapStateToProps, mapDispatchToProps)(ListarProfissionais)

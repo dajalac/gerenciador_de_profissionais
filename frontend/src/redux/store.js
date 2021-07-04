@@ -2,8 +2,15 @@
 /* eslint-disable import/prefer-default-export */
 import { createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
+import storage from 'redux-persist/lib/storage';
+import {persistReducer} from 'redux-persist';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import {getProfissoes, editarOuCriarProfissao,isProfissionalAssociado} from '../redux/reducer/profissaoReducer';
-import {getProfissionais, editarOuCriarProfissional} from '../redux/reducer/profissionaisReducer'
+import {getProfissionais, editarOuCriarProfissional} from '../redux/reducer/profissionaisReducer';
+
+
+
 
 const reducer ={
     // profissao
@@ -17,7 +24,14 @@ const reducer ={
 
 };
 
-const rootReducer = combineReducers(reducer);
+const persistConfig= {
+    key:'root',
+    storage,
+    stateReconciller: autoMergeLevel2
+}
 
-export const configureStore=()=>createStore(rootReducer, applyMiddleware(thunk)); 
+const rootReducer = combineReducers(reducer);
+const persistedReducer = persistReducer(persistConfig, rootReducer)
+
+export const configureStore=()=>createStore(persistedReducer,composeWithDevTools(applyMiddleware(thunk))); 
 

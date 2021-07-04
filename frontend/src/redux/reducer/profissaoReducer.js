@@ -13,7 +13,8 @@ export const getProfissoes = (state =[], action)=>{
 
     switch(type){
         case LISTAR_PROFISSOES: {
-            const profissoes =payload
+            
+            const profissoes = payload
             return profissoes
         }
         case LISTAR_PROFISSOES_FAILURE:{

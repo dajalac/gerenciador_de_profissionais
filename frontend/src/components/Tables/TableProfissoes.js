@@ -1,3 +1,5 @@
+
+/* eslint-disable object-shorthand */
 import React from 'react';
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,8 +32,11 @@ function Row(props) {
   return (
     <>
       <TableRow className={classes.root} >
-        <TableCell  component="th" scope="row" align="center">{row.profissao}</TableCell>
-        <TableCell  align="center">{row.situacao}</TableCell>
+        <TableCell  component="th" scope="row" align="center">{row.descricao}</TableCell>
+        {row.situacao ? 
+        <TableCell  align="center"> ATIVO </TableCell>
+        :
+        <TableCell  align="center"> INATIVO </TableCell>}
         <TableCell align="center">
                         <Edit color="primary" style={{fontSize: '25px'}}/> 
                       </TableCell>
@@ -43,27 +48,14 @@ function Row(props) {
 // check se a estrutura do props esta certa 
 Row.propTypes = {
     row: PropTypes.shape({
-      nome: PropTypes.string.isRequired,
-      profissao: PropTypes.string.isRequired,
+      descricao: PropTypes.string.isRequired,
       situacao: PropTypes.string.isRequired,
     }).isRequired,
   }; 
   
  
-  function createData(profissao, situacao) {
-    return {profissao, situacao};
-  }
-  
-  // dumy data...
-  const rows = [
-    createData('CEO', 'ATIVO'),
-    createData('CEO', 'ATIVO'),
-    createData('CEO', 'ATIVO'),
-    createData('CEO', 'ATIVO'),
-  ];
-
-export default function TableProfissoes() {
-    
+export default function TableProfissoes({profissoes}) {
+ 
   return (
     <TableContainer component={Paper} style={{width: '80%'}}>
       <Table aria-label="collapsible table">
@@ -75,8 +67,8 @@ export default function TableProfissoes() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.name} row={row} />
+          {profissoes.map((row) => (
+            <Row key={row.id} row={row} />
           ))}
         </TableBody>
       </Table>

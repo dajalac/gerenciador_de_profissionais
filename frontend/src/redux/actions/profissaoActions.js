@@ -20,8 +20,9 @@ export const listarProfissoesFailue =()=>({
 });
 
 export const LISTAR_PROFISSOES = 'LISTAR_PROFISSOES';
-export const listarProfissoes = ()=>({
-    type:LISTAR_PROFISSOES
+export const listarProfissoes = (data)=>({
+    type:LISTAR_PROFISSOES,
+    payload:data
 });
 
 export const EDITAR_PROFISSAO = 'EDITAR_PROFISSAO';

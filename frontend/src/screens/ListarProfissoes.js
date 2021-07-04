@@ -1,15 +1,24 @@
+/* eslint-disable react/prop-types */
     import React from 'react';
+    import {connect} from 'react-redux';
     import TableProfissoes from '../components/Tables/TableProfissoes';
     import './ScreensFormat.css';
 
     
-    function ListarProfissoes() {
+    function ListarProfissoes({profissoes}) {
+        
         return (
-            <divi className ="screen-position">
-            <TableProfissoes/>
-        </divi>
+            <div className ="screen-position">
+            <TableProfissoes profissoes ={profissoes}/>
+        </div>
         )
     }
     
-    export default ListarProfissoes
+    const mapStateToProps = state =>({
+        profissoes: state.getProfissoes
+    })
+
+  
+    export default connect(mapStateToProps)(ListarProfissoes)
+    
     

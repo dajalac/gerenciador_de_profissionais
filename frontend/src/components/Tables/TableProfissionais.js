@@ -28,14 +28,14 @@ const useRowStyles = makeStyles (()=>({
   },
 }));
 
-function createData(nome, profissao, situacao, telefone, email) {
+function createData(nome, descricao, situacao, telefone, email) {
   return {
     nome,
-    profissao,
+    descricao,
      situacao,
-    history:[
+    history:
        // eslint-disable-next-line object-shorthand
-       {telefone: telefone, email:email} ]
+       [{telefone: telefone, email:email}]
   };
 }
 
@@ -53,8 +53,11 @@ function Row(props) {
           </IconButton>
         </TableCell>
         <TableCell style={{borderBottom:'none'}} component="th" scope="row">{row.nome}</TableCell>
-        <TableCell style={{borderBottom:'none'}} align="center">{row.profissao}</TableCell>
-        <TableCell style={{borderBottom:'none'}} align="center">{row.situacao}</TableCell>
+        <TableCell style={{borderBottom:'none'}} align="center">{row.descricao}</TableCell>
+        {row.situacao ? 
+        <TableCell  style={{borderBottom:'none'}} align="center"> ATIVO </TableCell>
+        :
+        <TableCell  style={{borderBottom:'none'}} align="center"> INATIVO </TableCell>}
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -86,8 +89,8 @@ function Row(props) {
 Row.propTypes = {
     row: PropTypes.shape({
       nome: PropTypes.string.isRequired,
-      profissao: PropTypes.string.isRequired,
-      situacao: PropTypes.string.isRequired,
+      descricao: PropTypes.string.isRequired,
+      situacao: PropTypes.bool.isRequired,
       history: PropTypes.arrayOf(
         PropTypes.shape({
           telefone: PropTypes.string.isRequired,
@@ -97,18 +100,19 @@ Row.propTypes = {
     }).isRequired,
   }; 
   
- 
 
 
-// criando os fake dados... 
-const rows = [
-    createData('Ana maria','CEO', 'ATIVO', 'telefone','email'),
-    createData('Maria','CEO', 'ATIVO', 'telefone','email'),
-    createData('Luiz','CEO', 'ATIVO', 'telefone','email'),
-];
+export default function TableProfissionais({profissionais}) {
 
-export default function TableProfissionais() {
-    
+  
+  const rows=[]
+    profissionais.map((profissional) => (
+      rows.push(createData(profissional.nome, profissional.descricao, 
+        profissional.situacao, profissional.telefone,profissional.email))
+    ))
+  
+  
+  console.log(rows)
   return (
     <TableContainer component={Paper} style={{width: '90%'}}>
       <Table aria-label="collapsible table">
@@ -122,7 +126,7 @@ export default function TableProfissionais() {
         </TableHead>
         <TableBody>
           {rows.map((row) => (
-            <Row key={row.name} row={row} />
+            <Row key={row.nome} row={row} />
           ))}
         </TableBody>
       </Table>

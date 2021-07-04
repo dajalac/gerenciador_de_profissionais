@@ -14,6 +14,7 @@ export const getProfissionais = (state =[], action)=>{
     switch(type){
         case LISTAR_PROFISSIONAIS: {
             const profissionais = payload
+            console.log(`primeiro ${profissionais}`)
             return profissionais
         }
         case LISTAR_PROFISSIONAIS_FAILURE:{

@@ -14,8 +14,9 @@ export const createProfissionalFailure = ()=>({
 
 
 export const LISTAR_PROFISSIONAIS = 'LISTAR_PROFISSIONAIS';
-export const listarProfissionais = ()=>({
-    type:LISTAR_PROFISSIONAIS 
+export const listarProfissionais = (data)=>({
+    type:LISTAR_PROFISSIONAIS,
+    payload:data
 });
 
 export const LISTAR_PROFISSIONAIS_FAILURE = 'LISTAR_PROFISSIONAIS_FAILURE';
