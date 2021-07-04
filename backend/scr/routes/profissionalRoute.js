@@ -17,13 +17,11 @@
  router.get('/',getTodosProfissionais);
 
  router.post('/novoProfissional',[check('nome').custom((value) => value.match(/^[A-Za-z ]+$/)),
-                                 check('email').isEmail(),
-                                 check('telefone').isAlphanumeric()],
+                                 check('email').isEmail()],
                createNovoProfissional);
 
  router.put('/editarProfissional',[check('nome').custom((value) => value.match(/^[A-Za-z ]+$/)),
-                                 check('email').isEmail(),
-                                 check('telefone').isAlphanumeric()],
+                                 check('email').isEmail()],
                                  editProfissional);
 
 
