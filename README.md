@@ -1,5 +1,5 @@
 
-#Sobre o applicativo:
+# Sobre o applicativo:
 
 ## Objetivo:
 
@@ -11,9 +11,9 @@ Uma versão da front end do applicativo pode ser encontrada [aqui](https://dajal
 
 ## Para rum o projeto localmente:
 
-..* rum somente o client : npm rum client
-..* rum somente o server : npm rum server
-..* rum ambos server e client ao mesmo tempo (recomendado): npm rum dev
+- rum somente o client : npm rum client
+- rum somente o server : npm rum server
+- rum ambos server e client ao mesmo tempo (recomendado): npm rum dev
 
 Nesse projeto a database só existe localmente. Para que o app funcione corretamente é preciso criar uma batabase no host. Os scripts para criar as tabelas podem ser encomtrados
 no backend> config. > tables_scripts.js
@@ -23,18 +23,18 @@ Uma versão do server live do server foi deployed pode ser encontrada [aqui](htt
 ## Ferramentas utilizadas:
 
 Back end:
-..* Node.js
-..* Express
-..* PostgresSql
+- Node.js
+- Express
+- PostgresSql
 
 Front end:
-..*JavaScript
-..*React
+- JavaScript
+- React
 
 Autenticação:
-..* Auth0
+- Auth0
 
 Deployment live versões:
-..* Heroku
-..* GitHub pages
+- Heroku
+- GitHub pages
 
