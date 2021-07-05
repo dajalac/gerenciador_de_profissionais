@@ -21,7 +21,7 @@
         
         const laodMessage = <div>Carregando...</div>
 
-        return isLoading ? laodMessage : pageContent
+        return isLoading ? laodMessage : pageContent // se os dados estiver carregando irá display Carregando
     }
     
     const mapStateToProps = state =>({

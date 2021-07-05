@@ -131,19 +131,19 @@ const listDeProfissoes =(
   const inputValidation =()=>{
     // check situacao
     if (situacao === '') {
-      setSituacaoError('Escolha uma situacao')
+      setSituacaoError('Escolha uma situação')
     } else {
       setSituacaoError('')
     }
   
     if (profissao === '') {
-      setProfissaoError('Escolha uma profissao')
+      setProfissaoError('Escolha uma profissão')
     } else {
       setProfissaoError('')
     }
     // check profissao
     if (!nome) {
-      setNomeError('Nome e obrigatorio')
+      setNomeError('Nome é obrigatório')
     } else {
       setNomeError('')
     } 
@@ -160,9 +160,7 @@ const listDeProfissoes =(
   
     if(situacao === '' || !nome || profissao ===''){
       inputValidation()
-      console.log('veja erros')
     }else{
-      console.log('criar varios dados hehe')
       onCriarNovoProfissional({nome, situacao,email, telefone,profissao})
       
       if(isSaved){

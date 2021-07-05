@@ -14,12 +14,14 @@
     editProfissional} = require('../controllers/profissionalController');
  
 
+// route: /api/profissional/
  router.get('/',getTodosProfissionais);
 
+ // routeÇ /api/profissional/novoProfissional
  router.post('/novoProfissional',[check('nome').custom((value) => value.match(/^[A-Za-z ]+$/)),
                                  check('email').isEmail()],
                createNovoProfissional);
-
+// route: /api/profissional/editarProfissional
  router.put('/editarProfissional',[check('nome').custom((value) => value.match(/^[A-Za-z ]+$/)),
                                  check('email').isEmail()],
                                  editProfissional);

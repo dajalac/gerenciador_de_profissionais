@@ -15,7 +15,7 @@ export const loadProfissionais = () => async (dispatch) => {
     //
     dispatch(loadProfissionaisInProgress());
     const response = await axios.get('/api/profissional/');
-    console.log (response.data.error)
+    
 
     if (response.data.error) {
         
@@ -47,13 +47,8 @@ export const criarProfissional = (novoProfissional) => async (dispatch) => {
 };
 
 export const profissionalEditar = (profissionalEditado) => async (dispatch) => {
-  console.log(profissionalEditado.profissionalId)
-  console.log(profissionalEditado.nome)
-  console.log(profissionalEditado.situacao)
-  console.log(profissionalEditado.profissao)
-  console.log(profissionalEditado.email)
-  console.log(profissionalEditado.telefone)
  
+
   const response = await axios.put('/api/profissional/editarProfissional', {
     id:profissionalEditado.profissionalId,
     nome: profissionalEditado.nome,
@@ -63,8 +58,6 @@ export const profissionalEditar = (profissionalEditado) => async (dispatch) => {
     telefone: profissionalEditado.telefone,
   });
 
-  console.log(response)
-  
 
   if (response.data.error) {
     dispatch(editarProfissionalFailure());

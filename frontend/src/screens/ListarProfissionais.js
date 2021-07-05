@@ -13,22 +13,12 @@ function ListarProfissionais({profissionais, isLoading, onGetProfissionais}) {
         
     },[])
 
-    const laodMessage = <div>Carregando...</div>
+    const laodMessage = <div>Carregando...</div> // tela para enquanto espera carrecar os dados
 
     return isLoading ? laodMessage : ( <div className ="screen-position">
     {console.log(`segundo ${profissionais}`)}
                 <TableProfissionais profissionais={profissionais}/>
                 </div>)
-
-/*
-    const content = ( <div className ="screen-position">
-        {console.log(`segundo ${profissionais}`)}
-                    <TableProfissionais profissionais={profissionais}/>
-                    </div>) */
-
-    
-    
-    // return isLoading ? laodMessage : content
 
 }
 

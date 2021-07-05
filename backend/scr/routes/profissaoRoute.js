@@ -14,14 +14,17 @@
     createProfissao,
     editProfissao} = require('../controllers/profissaoController');
 
- 
+ // route: /api/profissao'/
  router.get('/',getTodasProfissoes);
 
+ // route: /api/profissao/profissionalLinked'
  router.post('/profissionalLinked',isProfissionalLinked);
+
+ // route: /api/profissao/novaProfissao
 
  router.post('/novaProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z0-9 ]+$/))], 
             createProfissao);
-
+// route: /api/profissao/editarProfissao
  router.put('/editarProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z0-9 ]+$/))],
             editProfissao);
 

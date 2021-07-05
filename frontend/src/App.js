@@ -24,7 +24,7 @@ function App() {
         <Route path ='/listarProfissoes' exact component={ListarProfissoes}/>
         <Route path ='/editarProfissao' exact component={EditarProfissao}/>
         <Route path ='/editarProfissional' exact component={EditarProfissional}/>
-        <Route exact path='/callback' component={Callback} />
+        <Route exact path='/callback' component={Callback} /> {/* essa path é para o callback do Auth0 */}
       </Switch>
       </Router>
      

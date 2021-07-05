@@ -54,10 +54,7 @@ export const profissaoEditar = (profissaoEditada) => async(dispatch)=>{
         situacao: profissaoEditada.situacao
     });
 
-    console.log(profissaoEditada.id)
-    console.log(profissaoEditada.descricao)
-    console.log(profissaoEditada.situacao)
-    console.log(response)
+    
         if(response.data.error){
             dispatch(editarProfissaoFailure())
         }

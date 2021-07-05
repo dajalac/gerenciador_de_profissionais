@@ -13,6 +13,9 @@ const profissionalRoute = require('./scr/routes/profissionalRoute');
 const app = express();
 app.use(express.json());
 
+app.get('/', (req, res)=>{
+    res.json('this is working')
+})
 
 app.use('/api/profissao',profissaoRoute);
 app.use('/api/profissional',profissionalRoute);

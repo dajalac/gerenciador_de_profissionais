@@ -68,8 +68,8 @@ export default function TableProfissoes({profissoes}) {
       <Table aria-label="collapsible table">
         <TableHead className = "table-header">
           <TableRow >
-            <TableCell align="center">Profissao</TableCell>
-            <TableCell align="center">Situacao</TableCell>
+            <TableCell align="center">Profissão</TableCell>
+            <TableCell align="center">Situação</TableCell>
             <TableCell align="center" className="table-status-column"> </TableCell>
           </TableRow>
         </TableHead>

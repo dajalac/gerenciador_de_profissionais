@@ -59,14 +59,14 @@ const inputValidation =()=>{
 
   // check situacao
   if (situacao === '') {
-    setSituacaoError('Escolha uma situacao')
+    setSituacaoError('Escolha uma situação')
   } else {
     setSituacaoError(' ')
   };
 
   // check profissao
   if (!descricao) {
-    setDescricaoError('O titulo da profissao e obrigatorio')
+    setDescricaoError('O titulo da profissão é obrigatório')
   } 
    else  {
     setDescricaoError(' ')
@@ -88,11 +88,11 @@ const salvarDatas = () => {
     onCriarNovaProfissao({descricao, situacao})
     
     if(isSaved){
-      alert('Profissao cadastrada com sucesso')
+      alert('Profissão cadastrada com sucesso')
       history.push('/')
     }
     else{
-      alert('Profissao ja existe na base de dados')
+      alert('Profissão já existe na base de dados')
     }
 
   } 

@@ -1,6 +1,6 @@
 /* eslint-disable prefer-const */
 /* eslint-disable no-console */
-/* eslint-disable react/prop-types */
+
 import React,{useEffect} from 'react';
 
 import { useHistory} from 'react-router-dom';
@@ -13,7 +13,9 @@ import auth0Client from '../auth0/Auth0';
 import './Home.css'
 
 
-function Home() {// eslint-disable-next-line prefer-const
+function Home() {
+
+    // vai chamar a login page do auth0
 
     useEffect(() => {
         if (!auth0Client.isAuthenticated()) {
@@ -23,7 +25,6 @@ function Home() {// eslint-disable-next-line prefer-const
 
       
     let history = useHistory();
-
 
     const onListarProfissionais=(()=>{
         

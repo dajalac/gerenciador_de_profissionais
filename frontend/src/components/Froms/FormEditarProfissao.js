@@ -29,6 +29,8 @@ const situacoes = [
          color: 'red'
     }
 }
+
+  // para aplicar style no form
   const useStyles = makeStyles((theme) => ({
     root: {
     
@@ -44,9 +46,6 @@ const situacoes = [
 function FormEditarProfissao({onEditarProfissao, isSaved, profissaoToEditar}) {
   const classes = useStyles();
   const [situacao, setSituacao]= useState(profissaoToEditar.situacao);
-  // const [descricao, setDescricao] = useState('');
- //  const [isSituacaoValid, setIsSituacaoValid] =useState(true);
- //  const [isProfissaoValid, setIsProfissaoValid] =useState(true);
   const [descricaoError, setDescricaoError] = useState(' ');
   const [situacaoError, setSituacaoError] = useState(' ');
   const textFieldRef = useRef('');
@@ -55,7 +54,7 @@ function FormEditarProfissao({onEditarProfissao, isSaved, profissaoToEditar}) {
   let history = useHistory();
 
 
-/** handlers */
+
   const handleSituacao = (event) => {
     setSituacao(event.target.value);
   };
@@ -63,17 +62,17 @@ function FormEditarProfissao({onEditarProfissao, isSaved, profissaoToEditar}) {
 
 const inputValidation =()=>{
 
-    console.log('heheheh')
+    
   // check situacao
   if (situacao === '') {
-    setSituacaoError('Escolha uma situacao')
+    setSituacaoError('Escolha uma situaçãpo')
   } else {
     setSituacaoError(' ')
   };
 
   // check profissao
   if (!descricao) {
-    setDescricaoError('O titulo da profissao e obrigatorio')
+    setDescricaoError('O título da profissão é obrigatório')
   } 
    else  {
     setDescricaoError(' ')
@@ -97,11 +96,11 @@ const salvarDatas = () => {
     onEditarProfissao({descricao, situacao, profissaoId});
 
     if(isSaved){
-        alert('Profissao cadastrada com sucesso')
+        alert('Profissão cadastrada com sucesso')
         history.push('/')
       }
       else{
-        alert('Profissao ja existe na base de dados')
+        alert('Profissão já existe na base de dados')
       }
 
   } 

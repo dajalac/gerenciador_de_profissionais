@@ -134,19 +134,19 @@ const listDeProfissoes =(
   const inputValidation =()=>{
     // check situacao
     if (situacao === '') {
-      setSituacaoError('Escolha uma situacao')
+      setSituacaoError('Escolha uma situação')
     } else {
       setSituacaoError('')
     }
   
     if (profissao === '') {
-      setProfissaoError('Escolha uma profissao')
+      setProfissaoError('Escolha uma profissão')
     } else {
       setProfissaoError('')
     }
     // check profissao
     if (!nome) {
-      setNomeError('Nome e obrigatorio')
+      setNomeError('Nome e obrigatório')
     } else {
       setNomeError('')
     } 
