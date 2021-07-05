@@ -33,12 +33,12 @@ export const criarProfissional = (novoProfissional) => async (dispatch) => {
   const response = await axios.post('/api/profissional/novoProfissional', {
     nome: novoProfissional.nome,
     situacao: novoProfissional.situacao,
-    profissao: novoProfissional.profissao,
+    profissaoId: novoProfissional.profissao,
     email: novoProfissional.email,
     telefone: novoProfissional.telefone,
   });
 
-  if (response.error) {
+  if (response.data.error) {
     dispatch(createProfissionalFailure());
   } else {
     dispatch(createProfissional());
@@ -54,7 +54,7 @@ export const profissionalEditar = (profissionalEditado) => async (dispatch) => {
     telefone: profissionalEditado.telefone,
   });
 
-  if (response.error) {
+  if (response.data.error) {
     dispatch(editarProfissionalFailure());
   } else {
     dispatch(editarProfissional());

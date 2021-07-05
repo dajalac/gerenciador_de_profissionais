@@ -1,6 +1,6 @@
 /* eslint-disable react/no-string-refs */
 /* eslint-disable prefer-const */
-import React, {useState,useRef} from 'react';
+import React, {useState, useRef} from 'react';
 import { useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -20,6 +20,7 @@ const situacoes = [
     },
   ];
 
+  // Para display as error msg em vermelho
   const styles = {
     helper: {
          color: 'red'
@@ -46,7 +47,7 @@ function FormProfissao({onCriarNovaProfissao, isSaved}) {
   const [descricaoError, setDescricaoError] = useState(' ');
   const [situacaoError, setSituacaoError] = useState(' ');
   const textFieldRef = useRef('');
-  const descricao = textFieldRef.current.value;
+  let descricao = '';
   let history = useHistory();
 
 /** handlers */
@@ -56,36 +57,35 @@ function FormProfissao({onCriarNovaProfissao, isSaved}) {
 
 
 const inputValidation =()=>{
+
   // check situacao
   if (situacao === '') {
-    console.log(`inside s ${situacao}`)
     setSituacaoError('Escolha uma situacao')
   } else {
     setSituacaoError(' ')
-  }
+  };
 
   // check profissao
   if (!descricao) {
-    console.log(`inside d ${situacao}`)
     setDescricaoError('O titulo da profissao e obrigatorio')
-  } else {
+  } 
+   else  {
     setDescricaoError(' ')
-  }
+  };
   
- }
-
+ };
 
 
 const salvarDatas = () => {
-  /** first check the input validation */
+  descricao =textFieldRef.current.value;
+
   setDescricaoError(' ')
   setSituacaoError(' ')
 
-  if(situacao === '' || !descricao ){
+  
+  if(situacao === '' || descricao ===''){
     inputValidation()
-    console.log('veja erros')
   }else{
-    console.log('criar varios dados hehe')
     onCriarNovaProfissao({descricao, situacao})
     
     if(isSaved){
@@ -95,14 +95,11 @@ const salvarDatas = () => {
     else{
       alert('Profissao ja existe na base de dados')
     }
-  
 
-  }
+  } 
 
-  console.log(descricaoError)
-  console.log(situacaoError)
-    
-  
+
+
 };
 
 

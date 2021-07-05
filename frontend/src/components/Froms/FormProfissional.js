@@ -1,7 +1,9 @@
+/* eslint-disable prefer-const */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable quotes */
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import PropTypes from "prop-types";
+import { useHistory} from 'react-router-dom';
 import MaskedInput from "react-text-mask";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -12,18 +14,8 @@ import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import "./Forms.css";
 
-// dumy data
-const situacoes = [
-  {
-    value: true,
-    label: "Ativo",
-  },
-  {
-    value: false,
-    label: "Inativo",
-  },
-];
 
+// para validar o formato do telefone
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
 
@@ -56,10 +48,19 @@ function TextMaskCustom(props) {
   );
 }
 
+
 TextMaskCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
 };
 
+// Para display as error msg em vermelho
+  const styles = {
+    helper: {
+         color: 'red'
+    }
+}
+
+// form styles
 const useStyles = makeStyles((theme) => ({
   root: {
     margin: theme.spacing(3),
@@ -71,13 +72,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FormProfissional() {
+function FormProfissional({profissoes, onCriarNovoProfissional, isSaved}) {
   const classes = useStyles();
-  const [situacao, setSituacao] = useState("Ativo");
+  const [situacao, setSituacao] = useState('');
+  const [profissao, setProfissao] = useState('');
+  const [nomeError, setNomeError] = useState('');
+  const [situacaoError, setSituacaoError] = useState('');
+  const [profissaoError, setProfissaoError] = useState('');
+  const nomeFieldRef = useRef('');
+  const emailFieldRef = useRef('');
+  const phoneFieldRef = useRef('');
+  let nome = '';
+  let email = '';
+  let telefone = '';
+  let history = useHistory();
 
   const [values, setValues] = useState({
     textmask: "(55)    -    ",
   });
+
+  // dropdown menu para situacao
+const situacoes = [
+  {
+    value: true,
+    label: "Ativo",
+  },
+  {
+    value: false,
+    label: "Inativo",
+  },
+];
+
+
+// dropdown menu para profissoes
+
+const listDeProfissoes =(
+    profissoes.map((item)=>({
+    value: item.id.toString(),
+    label: item.descricao
+    })))
+
 
   const handleChange = (event) => {
     setValues({
@@ -90,6 +124,60 @@ function FormProfissional() {
     setSituacao(event.target.value);
   };
 
+  const handleChangeProfissao = (event) => {
+    setProfissao(event.target.value);
+  };
+
+  const inputValidation =()=>{
+    // check situacao
+    if (situacao === '') {
+      setSituacaoError('Escolha uma situacao')
+    } else {
+      setSituacaoError('')
+    }
+  
+    if (profissao === '') {
+      setProfissaoError('Escolha uma profissao')
+    } else {
+      setProfissaoError('')
+    }
+    // check profissao
+    if (!nome) {
+      setNomeError('Nome e obrigatorio')
+    } else {
+      setNomeError('')
+    } 
+   };
+
+   const salvarDados = () => {
+    nome = nomeFieldRef.current.value;
+    email = emailFieldRef.current.value;
+    telefone = phoneFieldRef.current.value;
+
+    setNomeError('')
+    setSituacaoError('')
+    setProfissaoError('')
+  
+    if(situacao === '' || !nome || profissao ===''){
+      inputValidation()
+      console.log('veja erros')
+    }else{
+      console.log('criar varios dados hehe')
+      onCriarNovoProfissional({nome, situacao,email, telefone,profissao})
+      
+      if(isSaved){
+        alert('Profissional cadastrado com sucesso')
+        history.push('/')
+      }
+    
+  
+    }
+  
+}
+
+
+
+
   return (
     <div className="form-with-columns-container">
       <div className="form-with-columns">
@@ -97,13 +185,17 @@ function FormProfissional() {
 
         <form className={classes.root} noValidate autoComplete="off">
           <div>
-            <TextField id="standard-basic" label="Nome*" />
+            <TextField id="standard-basic"
+              label="Nome*"
+              helperText= {nomeError} 
+              inputRef={nomeFieldRef}
+              FormHelperTextProps={{ style: styles.helper }} />
           </div>
 
           <div style={{ margin: "10px" }} />
 
           <div>
-            <TextField id="standard-basic" label="E-mail" />
+            <TextField id="standard-basic" label="E-mail" inputRef={emailFieldRef} />
           </div>
 
           <div style={{ margin: "10px" }} />
@@ -115,6 +207,7 @@ function FormProfissional() {
                 value={values.textmask}
                 onChange={handleChange}
                 name="textmask"
+                inputRef={phoneFieldRef}
                 id="formatted-text-mask-input"
                 inputComponent={TextMaskCustom}
               />
@@ -129,11 +222,13 @@ function FormProfissional() {
               defaultValue="Normal"
               id="standard-select-currency"
               select
-              label="Profissao"
-              value={situacao}
-              onChange={handleChange}
+              label="Profissao*"
+              value={profissao}
+              helperText ={profissaoError}
+              FormHelperTextProps={{ style: styles.helper }}
+              onChange={handleChangeProfissao}
             >
-              {situacoes.map((option) => (
+              {listDeProfissoes.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
@@ -146,8 +241,10 @@ function FormProfissional() {
               defaultValue="Normal"
               id="standard-select-currency"
               select
-              label="Situacao"
+              label="Situacao*"
               value={situacao}
+              helperText= {situacaoError} 
+              FormHelperTextProps={{ style: styles.helper }}
               onChange={handleChangeSituation}
             >
               {situacoes.map((option) => (
@@ -164,7 +261,7 @@ function FormProfissional() {
 
       <div className="btn-container">
         <Button variant="contained">Cancelar</Button>
-        <Button variant="contained" color="primary">
+        <Button variant="contained" color="primary" onClick={salvarDados}>
           Salvar
         </Button>
       </div>
