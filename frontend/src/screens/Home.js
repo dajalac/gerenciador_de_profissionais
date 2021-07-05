@@ -1,6 +1,7 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-console */
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React,{useEffect} from 'react';
 
 import { useHistory} from 'react-router-dom';
 import {Work, 
@@ -8,10 +9,19 @@ import {Work,
      Person, 
      PersonAdd} from '@material-ui/icons';
 import Card from '../components/Cards/card';
+import auth0Client from '../auth0/Auth0';
 import './Home.css'
 
 
 function Home() {// eslint-disable-next-line prefer-const
+
+    useEffect(() => {
+        if (!auth0Client.isAuthenticated()) {
+            auth0Client.signIn();
+        }
+      },[]);
+
+      
     let history = useHistory();
 
 

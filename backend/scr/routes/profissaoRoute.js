@@ -17,12 +17,12 @@
  
  router.get('/',getTodasProfissoes);
 
- router.get('/profissionalLinked',isProfissionalLinked);
+ router.post('/profissionalLinked',isProfissionalLinked);
 
- router.post('/novaProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z ]+$/))], 
+ router.post('/novaProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z0-9 ]+$/))], 
             createProfissao);
 
- router.put('/editarProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z ]+$/))],
+ router.put('/editarProfissao',[check('descricao', 'descricao invalida').custom((value) => value.match(/^[A-Za-z0-9 ]+$/))],
             editProfissao);
 
 

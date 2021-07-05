@@ -16,8 +16,11 @@ const getTodosProfissionais =(req, res)=>{
 
     db.select('profissionais.nome',
             'profissoes.descricao',
+            'profissionais.situacao',
             'profissionais.telefone',
-            'profissionais.email' )
+            'profissionais.email',
+            'profissionais.id',
+            'profissionais.tipodeprofissao')
         .from('profissionais')
         .join('profissoes','profissionais.tipodeprofissao', '=','profissoes.id')
     .then((response)=>{

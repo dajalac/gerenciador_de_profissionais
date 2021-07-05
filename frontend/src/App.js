@@ -9,6 +9,7 @@ import ListarProfissionais from './screens/ListarProfissionais';
 import ListarProfissoes from './screens/ListarProfissoes';
 import EditarProfissao from './screens/EditarProfissao';
 import EditarProfissional from './screens/EditarProfissional';
+import Callback from './auth0/Callback';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path ='/listarProfissoes' exact component={ListarProfissoes}/>
         <Route path ='/editarProfissao' exact component={EditarProfissao}/>
         <Route path ='/editarProfissional' exact component={EditarProfissional}/>
+        <Route exact path='/callback' component={Callback} />
       </Switch>
       </Router>
      

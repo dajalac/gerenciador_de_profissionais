@@ -1,29 +1,38 @@
+/* eslint-disable prefer-const */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable react/self-closing-comp */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import { useHistory, Link} from 'react-router-dom';
 import {FaBars}from 'react-icons/fa';
 import{AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons'; // to change icons color
+import auth0Client from '../../auth0/Auth0';
 import './Navbar.css'
 
 
 function Navbar() {
-
     const[showSideBar, setShowSideBar ] = useState(false); // sidebar não aparacerá inicialmente
+    let history = useHistory();
+
+    const signOut = () => {
+        auth0Client.signOut();
+        history.replace('/');
+    }
 
     // Esse método vai set a variavel showSideBar para o valor opost do seu atual estado
     const displaySidebar =()=>{
         setShowSideBar(!showSideBar);
     }
 
+
     return (
         <>
         <IconContext.Provider value={{ color: '#fff2df' }}> 
             <div className ="navbar">
                 < FaBars className='navbar-burger-menu' onClick={displaySidebar} onKeyDown={displaySidebar}/>
-                <div className='navbar-signout-menu'>sign out</div>
+                <div className='navbar-signout-menu' onClick={signOut } onKeyDown={signOut }> sign out</div>
             </div>
 
             <nav className={showSideBar ? 'navbar-sidebar-active' : 'navbar-sidebar'}>
