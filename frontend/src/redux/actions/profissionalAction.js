@@ -1,5 +1,13 @@
 /* eslint-disable import/prefer-default-export */
+export const LOAD_PROFISSIONAIS_IN_PROGRESS = 'LOAD_PROFISSIONAIS_IN_PROGRESS';
+export const loadProfissionaisInProgress =()=>({
+    type: LOAD_PROFISSIONAIS_IN_PROGRESS
+});
 
+export const LOAD_PROFISSIONAIS_FAILURE = 'LOAD_PROFISSIONAIS_FAILURE';
+export const loadProfissionaiFailure =()=>({
+    type: LOAD_PROFISSIONAIS_FAILURE
+});
 
 export const CREATE_PROFISSIONAL = 'CREATE_PROFISSIONAL';
 export const createProfissional = novoProfissional  =>({

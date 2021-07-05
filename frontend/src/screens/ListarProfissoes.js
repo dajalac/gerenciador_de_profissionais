@@ -1,24 +1,39 @@
 /* eslint-disable react/prop-types */
-    import React from 'react';
+    import React, {useEffect} from 'react';
     import {connect} from 'react-redux';
+    import{loadProfissoes} from '../redux/thunk/profissoesThunk';
     import TableProfissoes from '../components/Tables/TableProfissoes';
     import './ScreensFormat.css';
 
     
-    function ListarProfissoes({profissoes}) {
-        
-        return (
+    function ListarProfissoes({profissoes,isLoading, onGetProfissoes}) {
+
+        useEffect(()=>{
+            onGetProfissoes()
+            
+        },[])
+
+        const pageContent = (
             <div className ="screen-position">
             <TableProfissoes profissoes ={profissoes}/>
         </div>
-        )
+        );
+        
+        const laodMessage = <div>Carregando...</div>
+
+        return isLoading ? laodMessage : pageContent
     }
     
     const mapStateToProps = state =>({
-        profissoes: state.getProfissoes
+        profissoes: state.getProfissoes,
+        isLoading: state.isProfissoesLoading,
+    })
+
+    const mapDispatchToProps = dispatch =>({
+        onGetProfissoes: () => dispatch(loadProfissoes())
     })
 
   
-    export default connect(mapStateToProps)(ListarProfissoes)
+    export default connect(mapStateToProps, mapDispatchToProps)(ListarProfissoes)
     
     

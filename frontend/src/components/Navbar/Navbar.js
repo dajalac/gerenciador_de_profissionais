@@ -2,16 +2,14 @@
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 
 import React, {useState} from 'react';
-import {connect} from 'react-redux';
 import { Link } from 'react-router-dom';
 import {FaBars}from 'react-icons/fa';
 import{AiOutlineClose } from 'react-icons/ai';
 import { IconContext } from 'react-icons'; // to change icons color
-import {loadProfissoes} from '../../redux/thunk/profissoesThunk';
 import './Navbar.css'
 
 
-function Navbar({onGetProfissoes}) {
+function Navbar() {
 
     const[showSideBar, setShowSideBar ] = useState(false); // sidebar não aparacerá inicialmente
 
@@ -44,7 +42,7 @@ function Navbar({onGetProfissoes}) {
                         <Link to ='/novoProfissional'> Cadastrar Profissional</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/listarProfissoes'onClick={onGetProfissoes}  >Ver Profissoes</Link>
+                        <Link to ='/listarProfissoes'>Ver Profissoes</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
                         <Link to ='/novaProfissao'> Cadastrar Profissao</Link>
@@ -63,8 +61,5 @@ function Navbar({onGetProfissoes}) {
     )
 }
 
-const mapDispatchToProps = dispatch =>({
-    onGetProfissoes: () => dispatch(loadProfissoes())
-})
 
-export default connect(null, mapDispatchToProps)(Navbar)
+export default Navbar

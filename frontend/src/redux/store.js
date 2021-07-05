@@ -6,8 +6,8 @@ import storage from 'redux-persist/lib/storage';
 import {persistReducer} from 'redux-persist';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {getProfissoes, editarOuCriarProfissao,isProfissionalAssociado} from '../redux/reducer/profissaoReducer';
-import {getProfissionais, editarOuCriarProfissional} from '../redux/reducer/profissionaisReducer';
+import {getProfissoes, editarOuCriarProfissao,isProfissionalAssociado,isProfissoesLoading } from '../redux/reducer/profissaoReducer';
+import {getProfissionais, editarOuCriarProfissional,isProfissionaisLoading} from '../redux/reducer/profissionaisReducer';
 
 
 
@@ -17,10 +17,12 @@ const reducer ={
     getProfissoes,
     editarOuCriarProfissao,
     isProfissionalAssociado,
+    isProfissoesLoading,
 
     // profissionais
     getProfissionais,
-    editarOuCriarProfissional
+    editarOuCriarProfissional,
+    isProfissionaisLoading
 
 };
 

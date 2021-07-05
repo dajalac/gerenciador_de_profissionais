@@ -6,34 +6,42 @@ import TableProfissionais from '../components/Tables/TableProfissionais';
 import './ScreensFormat.css'
 
 
-function ListarProfissionais({todos, onGetProfissionais}) {
+function ListarProfissionais({profissionais, isLoading, onGetProfissionais}) {
 
     useEffect(()=>{
         onGetProfissionais()
         
     },[])
+
+    const laodMessage = <div>Carregando...</div>
+
+    return isLoading ? laodMessage : ( <div className ="screen-position">
+    {console.log(`segundo ${profissionais}`)}
+                <TableProfissionais profissionais={profissionais}/>
+                </div>)
+
+/*
+    const content = ( <div className ="screen-position">
+        {console.log(`segundo ${profissionais}`)}
+                    <TableProfissionais profissionais={profissionais}/>
+                    </div>) */
+
     
-    console.log(`segundo ${todos}`)
-
-
-
-    return (
-        
-        <div className ="screen-position">
-            <TableProfissionais profissionais={todos}/>
-        </div>
-    )
+    
+    // return isLoading ? laodMessage : content
 
 }
 
 const mapStateToProps = (state) =>({
     
-    todos: state.getProfissionais
+    profissionais: state.getProfissionais,
+    isLoading: state.isProfissionaisLoading
     
 })
 
 const mapDispatchToProps = dispatch =>({
     onGetProfissionais: ()=>dispatch(loadProfissionais())
+    
     })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListarProfissionais)

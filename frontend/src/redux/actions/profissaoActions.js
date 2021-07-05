@@ -12,6 +12,16 @@ export const createProfissaoFailure =()=>({
     type: CREATE_PROFISSAO_FAILURE
 });
 
+export const LOAD_PROFISSAO_IN_PROGRESS = 'LOAD_PROFISSAO_IN_PROGRESS';
+export const loadProfissaoInProgress = ()=>({
+    type: LOAD_PROFISSAO_IN_PROGRESS
+});
+
+export const LOAD_PROFISSAO_FAILURE = 'LOAD_PROFISSAO_FAILURE';
+export const loadProfissaofailure = ()=>({
+    type: LOAD_PROFISSAO_FAILURE
+});
+
 
 
 export const LISTAR_PROFISSOES_FAILURE = 'LISTAR_PROFISSOES_FAILURE';
