@@ -135,7 +135,7 @@ const salvarDatas = () => {
         <div style= {{margin:'50px'}}/> 
 
         <div>
-          <Button variant="contained" fullWidth>Cancelar</Button>
+          <Button variant="contained" fullWidth onClick ={()=>{history.push('/')}}>Cancelar</Button>
         </div>
         <div style= {{margin:'5px'}}/> 
         <div>

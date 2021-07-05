@@ -1,7 +1,8 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable prefer-const */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable quotes */
-import React, { useState,useRef } from "react";
+import React, { useState,useRef} from "react";
 import PropTypes from "prop-types";
 import { useHistory} from 'react-router-dom';
 import MaskedInput from "react-text-mask";
@@ -13,7 +14,6 @@ import Input from "@material-ui/core/Input";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
 import "./Forms.css";
-
 
 // para validar o formato do telefone
 function TextMaskCustom(props) {
@@ -72,10 +72,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function FormProfissional({profissoes, onCriarNovoProfissional, isSaved}) {
+function FormEditarProfissional({profissoes,onEditarProfissional , isSaved, profissionalToEditar}) {
   const classes = useStyles();
-  const [situacao, setSituacao] = useState('');
-  const [profissao, setProfissao] = useState('');
+  const [situacao, setSituacao] = useState(profissionalToEditar.situacao);
+  const [profissao, setProfissao] = useState(profissionalToEditar.tipodeprofissao);
   const [nomeError, setNomeError] = useState('');
   const [situacaoError, setSituacaoError] = useState('');
   const [profissaoError, setProfissaoError] = useState('');
@@ -86,6 +86,9 @@ function FormProfissional({profissoes, onCriarNovoProfissional, isSaved}) {
   let email = '';
   let telefone = '';
   let history = useHistory();
+  const profissionalId = profissionalToEditar.id;
+
+  console.log(profissionalToEditar)
 
   const [values, setValues] = useState({
     textmask: "(55)    -    ",
@@ -160,13 +163,12 @@ const listDeProfissoes =(
   
     if(situacao === '' || !nome || profissao ===''){
       inputValidation()
-      console.log('veja erros')
     }else{
-      console.log('criar varios dados hehe')
-      onCriarNovoProfissional({nome, situacao,email, telefone,profissao})
+
+      onEditarProfissional({nome, situacao,email, telefone,profissao, profissionalId })
       
       if(isSaved){
-        alert('Profissional cadastrado com sucesso')
+        alert('Profissional editado com sucesso')
         history.push('/')
       }
     
@@ -187,6 +189,7 @@ const listDeProfissoes =(
           <div>
             <TextField id="standard-basic"
               label="Nome*"
+              defaultValue={profissionalToEditar.nome}
               helperText= {nomeError} 
               inputRef={nomeFieldRef}
               FormHelperTextProps={{ style: styles.helper }} />
@@ -195,7 +198,10 @@ const listDeProfissoes =(
           <div style={{ margin: "10px" }} />
 
           <div>
-            <TextField id="standard-basic" label="E-mail" inputRef={emailFieldRef} />
+            <TextField id="standard-basic"
+                        label="E-mail"
+                        defaultValue={profissionalToEditar.history[0].email} 
+                        inputRef={emailFieldRef} />
           </div>
 
           <div style={{ margin: "10px" }} />
@@ -206,6 +212,7 @@ const listDeProfissoes =(
               <Input
                 value={values.textmask}
                 onChange={handleChange}
+                defaultValue={profissionalToEditar.history[0].telefone}
                 name="textmask"
                 inputRef={phoneFieldRef}
                 id="formatted-text-mask-input"
@@ -269,71 +276,4 @@ const listDeProfissoes =(
   );
 }
 
-export default FormProfissional;
-
-/**
- * <div className="forms-container">
-       
-      <form className={classes.root}  noValidate autoComplete="off" >
-        <div >
-          <TextField id="standard-basic" label="Nome*"/>
-        </div>
-
-        <div style= {{margin:'10px'}}/> 
-
-        <div >
-          <TextField id="standard-basic" label="E-mail"/>
-        </div>
-
-        <div style= {{margin:'10px'}}/>
-
-        <div >
-          <TextField id="standard-basic" label="Telefone"/>
-        </div>
-        <div>
-        <TextField  
-          defaultValue="Normal" 
-          id="standard-select-currency"
-          select
-          label="Profissao"
-          value={situacao}
-          onChange={handleChange}
-        >
-          {situacoes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        </div>
-        
-        <div>
-        <TextField  
-          defaultValue="Normal" 
-          id="standard-select-currency"
-          select
-          label="Situacao"
-          value={situacao}
-          onChange={handleChange}
-        >
-          {situacoes.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-        </TextField>
-        </div>
-
-        <div style= {{margin:'50px'}}/> 
-
-        <div>
-          <Button variant="contained" fullWidth>Cancelar</Button>
-        </div>
-        <div style= {{margin:'5px'}}/> 
-        <div>
-        <Button variant="contained" color="primary" fullWidth>Salvar</Button>
-        </div>
-
-      </form>
-    </div>
- */
+export default FormEditarProfissional;

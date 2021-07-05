@@ -1,6 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Collapse from '@material-ui/core/Collapse';
@@ -28,9 +29,11 @@ const useRowStyles = makeStyles (()=>({
   },
 }));
 
-function createData(nome, descricao, situacao, telefone, email) {
+function createData(tipodeprofissao,id,nome, descricao, situacao, telefone, email) {
   return {
+    id,
     nome,
+    tipodeprofissao,
     descricao,
      situacao,
     history:
@@ -70,7 +73,9 @@ function Row(props) {
                       <TableCell component="th" scope="row" align="center"><b>E-mail: </b> {historyRow.email}</TableCell>
                       <TableCell align="center"><b>Telefone: </b> {historyRow.telefone}</TableCell>
                       <TableCell align="center">
-                        <Edit color="primary" style={{fontSize: '25px'}}/> 
+                        <Link to = {{pathname:'/editarProfissional', state: row }}>
+                          <Edit color="primary" style={{fontSize: '25px'}}/> 
+                        </Link>
                       </TableCell>
                       
                     </TableRow>
@@ -88,6 +93,8 @@ function Row(props) {
 // check se a estrutura do props esta certa 
 Row.propTypes = {
     row: PropTypes.shape({
+      id:PropTypes.number.isRequired,
+      tipodeprofissao:PropTypes.number.isRequired,
       nome: PropTypes.string.isRequired,
       descricao: PropTypes.string.isRequired,
       situacao: PropTypes.bool.isRequired,
@@ -107,7 +114,7 @@ export default function TableProfissionais({profissionais}) {
   
   const rows=[]
     profissionais.map((profissional) => (
-      rows.push(createData(profissional.nome, profissional.descricao, 
+      rows.push(createData(profissional.tipodeprofissao, profissional.id,profissional.nome, profissional.descricao, 
         profissional.situacao, profissional.telefone,profissional.email))
     ))
   
