@@ -47,31 +47,39 @@ export const criarProfissao = (novaProfissao) =>async(dispatch)=>{
 
 }
 
-export const profissaoEditar = (profissaoEditada) =>(dispatch)=>{
-    axios.put('/api/profissao/editarProfissao',{
+export const profissaoEditar = (profissaoEditada) => async(dispatch)=>{
+    const response = await axios.put('/api/profissao/editarProfissao',{
+        id: profissaoEditada.profissaoId,
         descricao: profissaoEditada.descricao,
         situacao: profissaoEditada.situacao
-    })
-    .then((response)=>{
-        if(response.error){
+    });
+
+    console.log(profissaoEditada.id)
+    console.log(profissaoEditada.descricao)
+    console.log(profissaoEditada.situacao)
+    console.log(response)
+        if(response.data.error){
             dispatch(editarProfissaoFailure())
         }
         else{
             dispatch(editarProfissao())
         }
-    })
+    
 
     
 };
 
-export const checkAssociacao = () => async(dispatch)=>{
-    const response = await axios.get('/api/profissao/profissionalLinked');
-
-    if(response.error){
-        dispatch(profissionalAssociadoFalse())
-    }
-    else{
-        dispatch(profissionalAssociadoTrue())
-    }
+export const checkAssociacao = (profissaoId) => (dispatch)=>{
+    axios.post('/api/profissao/profissionalLinked',{
+        id:profissaoId
+    })
+    .then((response)=>{
+        if(response.data.error){
+            dispatch(profissionalAssociadoFalse())
+        }
+        else{
+            dispatch(profissionalAssociadoTrue(response.data.data))
+        }
+    })
 }
 

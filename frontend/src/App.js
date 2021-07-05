@@ -7,6 +7,7 @@ import NovoProfissional from './screens/NovoProfissional';
 import NovaProfissao from './screens/NovaProfissao';
 import ListarProfissionais from './screens/ListarProfissionais';
 import ListarProfissoes from './screens/ListarProfissoes';
+import EditarProfissao from './screens/EditarProfissao';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path ='/novaProfissao' exact component={NovaProfissao}/>
         <Route path ='/listarProfissionais' exact component={ListarProfissionais}/>
         <Route path ='/listarProfissoes' exact component={ListarProfissoes}/>
+        <Route path ='/editarProfissao' exact component={EditarProfissao}/>
       </Switch>
       </Router>
      

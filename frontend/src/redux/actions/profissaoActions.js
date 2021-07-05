@@ -46,8 +46,9 @@ export const editarProfissaoFailure = ()=>({
 });
 
 export const PROFISSIONAL_ASSOCIADO_TRUE ='PROFISSIONAL_ASSOCIADO_TRUE ';
-export const profissionalAssociadoTrue =()=>({
-    type:PROFISSIONAL_ASSOCIADO_TRUE
+export const profissionalAssociadoTrue =(data)=>({
+    type:PROFISSIONAL_ASSOCIADO_TRUE,
+    payload:data
 });
 
 export const PROFISSIONAL_ASSOCIADO_FALSE ='PROFISSIONAL_ASSOCIADO_FALSE ';

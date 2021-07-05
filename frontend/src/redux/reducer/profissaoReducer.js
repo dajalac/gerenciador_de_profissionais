@@ -64,15 +64,15 @@ export const editarOuCriarProfissao = (state = false, action) => {
   }
 };
 
-export const isProfissionalAssociado = (state = false, action) => {
-  const { type } = action;
+export const getProfissionalAssociado = (state = [], action) => {
+  const { type,payload } = action;
 
   switch (type) {
     case PROFISSIONAL_ASSOCIADO_TRUE: {
-      return true;
+      return payload;
     }
     case PROFISSIONAL_ASSOCIADO_FALSE: {
-      return false;
+      return state;
     }
     default:
       return state;

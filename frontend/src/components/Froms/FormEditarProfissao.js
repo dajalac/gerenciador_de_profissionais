@@ -1,3 +1,6 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
+
 /* eslint-disable react/no-string-refs */
 /* eslint-disable prefer-const */
 import React, {useState, useRef} from 'react';
@@ -38,15 +41,18 @@ const situacoes = [
   }));
 
 
-function FormProfissao({onCriarNovaProfissao, isSaved}) {
+function FormEditarProfissao({onEditarProfissao, isSaved, profissaoToEditar}) {
   const classes = useStyles();
-  const [situacao, setSituacao]= useState('');
+  const [situacao, setSituacao]= useState(profissaoToEditar.situacao);
+  // const [descricao, setDescricao] = useState('');
+ //  const [isSituacaoValid, setIsSituacaoValid] =useState(true);
+ //  const [isProfissaoValid, setIsProfissaoValid] =useState(true);
   const [descricaoError, setDescricaoError] = useState(' ');
   const [situacaoError, setSituacaoError] = useState(' ');
   const textFieldRef = useRef('');
   let descricao = '';
+  const profissaoId = profissaoToEditar.id;
   let history = useHistory();
-
 
 
 /** handlers */
@@ -57,6 +63,7 @@ function FormProfissao({onCriarNovaProfissao, isSaved}) {
 
 const inputValidation =()=>{
 
+    console.log('heheheh')
   // check situacao
   if (situacao === '') {
     setSituacaoError('Escolha uma situacao')
@@ -76,6 +83,7 @@ const inputValidation =()=>{
 
 
 const salvarDatas = () => {
+
   descricao =textFieldRef.current.value;
 
   setDescricaoError(' ')
@@ -85,15 +93,16 @@ const salvarDatas = () => {
   if(situacao === '' || descricao ===''){
     inputValidation()
   }else{
-    onCriarNovaProfissao({descricao, situacao})
-    
+
+    onEditarProfissao({descricao, situacao, profissaoId});
+
     if(isSaved){
-      alert('Profissao cadastrada com sucesso')
-      history.push('/')
-    }
-    else{
-      alert('Profissao ja existe na base de dados')
-    }
+        alert('Profissao cadastrada com sucesso')
+        history.push('/')
+      }
+      else{
+        alert('Profissao ja existe na base de dados')
+      }
 
   } 
 };
@@ -102,10 +111,10 @@ const salvarDatas = () => {
       <form className={classes.root}  noValidate autoComplete="off" >
         <div >
           <TextField
-           id="standard-basic"
+           id="standard-required"
             label="Titulo"
+            defaultValue ={profissaoToEditar.descricao}
             inputRef={textFieldRef}
-            value = {descricao}
             helperText= {descricaoError}
             FormHelperTextProps={{ style: styles.helper }}/>
 
@@ -135,7 +144,8 @@ const salvarDatas = () => {
         <div style= {{margin:'50px'}}/> 
 
         <div>
-          <Button variant="contained" fullWidth>Cancelar</Button>
+          <Button variant="contained" fullWidth
+          onClick ={()=>{history.push('/')}}>Cancelar</Button>
         </div>
         <div style= {{margin:'5px'}}/> 
         <div>
@@ -150,4 +160,4 @@ const salvarDatas = () => {
   );
 }
 
-export default FormProfissao;
+export default FormEditarProfissao;
