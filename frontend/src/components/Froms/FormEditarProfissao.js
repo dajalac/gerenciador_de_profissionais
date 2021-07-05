@@ -99,9 +99,6 @@ const salvarDatas = () => {
         alert('Profissão cadastrada com sucesso')
         history.push('/')
       }
-      else{
-        alert('Profissão já existe na base de dados')
-      }
 
   } 
 };

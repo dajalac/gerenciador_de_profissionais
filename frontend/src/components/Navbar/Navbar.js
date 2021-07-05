@@ -44,17 +44,17 @@ function Navbar() {
                         <Link to ='/'>Home</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/listarProfissionais'>Ver Profissionais</Link>
+                        <Link to ='/listarProfissionais'> Listar Profissionais</Link>
                     
                     </li>
                     <li className ='navbar-sidebar-links'>
                         <Link to ='/novoProfissional'> Cadastrar Profissional</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/listarProfissoes'>Ver Profissoes</Link>
+                        <Link to ='/listarProfissoes'>Listar Profissões</Link>
                     </li>
                     <li className ='navbar-sidebar-links'>
-                        <Link to ='/novaProfissao'> Cadastrar Profissao</Link>
+                        <Link to ='/novaProfissao'> Cadastrar Profissão</Link>
                     </li>
                     <li className ='navbar-sidebar-links sidebar-signout-menu'>
                         {/* For now it will direct to home page */}

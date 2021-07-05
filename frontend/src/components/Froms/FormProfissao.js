@@ -102,10 +102,8 @@ const salvarDatas = () => {
       <form className={classes.root}  noValidate autoComplete="off" >
         <div >
           <TextField
-           id="standard-basic"
-            label="Titulo"
+            label="Profissão*"
             inputRef={textFieldRef}
-            value = {descricao}
             helperText= {descricaoError}
             FormHelperTextProps={{ style: styles.helper }}/>
 
