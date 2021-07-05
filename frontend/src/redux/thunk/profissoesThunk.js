@@ -38,13 +38,14 @@ export const criarProfissao = (novaProfissao) =>async(dispatch)=>{
         situacao: novaProfissao.situacao
     });
 
-    if(response.error){
+    if(response.data.error){
         dispatch(createProfissaoFailure())
     }
     else{
         dispatch(createProfissao())
     }
-};
+
+}
 
 export const profissaoEditar = (profissaoEditada) =>(dispatch)=>{
     axios.put('/api/profissao/editarProfissao',{

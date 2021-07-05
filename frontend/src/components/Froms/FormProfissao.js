@@ -1,6 +1,7 @@
 /* eslint-disable react/no-string-refs */
 /* eslint-disable prefer-const */
 import React, {useState,useRef} from 'react';
+import { useHistory} from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -8,7 +9,6 @@ import Button from '@material-ui/core/Button';
 import './Forms.css'
 
 
-// dumy data
 const situacoes = [
     {
       value: true,
@@ -37,7 +37,7 @@ const situacoes = [
   }));
 
 
-function FormProfissao({onCriarNovaProfissao}) {
+function FormProfissao({onCriarNovaProfissao, isSaved}) {
   const classes = useStyles();
   const [situacao, setSituacao]= useState('');
   // const [descricao, setDescricao] = useState('');
@@ -47,17 +47,13 @@ function FormProfissao({onCriarNovaProfissao}) {
   const [situacaoError, setSituacaoError] = useState(' ');
   const textFieldRef = useRef('');
   const descricao = textFieldRef.current.value;
+  let history = useHistory();
 
 /** handlers */
   const handleSituacao = (event) => {
     setSituacao(event.target.value);
   };
 
-  /*
-  const handleProfissao = (event) => {
-    setDescricao(event.target.value);
-    console.log(descricao)
-  }; */ 
 
 const inputValidation =()=>{
   // check situacao
@@ -90,8 +86,17 @@ const salvarDatas = () => {
     console.log('veja erros')
   }else{
     console.log('criar varios dados hehe')
-    
     onCriarNovaProfissao({descricao, situacao})
+    
+    if(isSaved){
+      alert('Profissao cadastrada com sucesso')
+      history.push('/')
+    }
+    else{
+      alert('Profissao ja existe na base de dados')
+    }
+  
+
   }
 
   console.log(descricaoError)
