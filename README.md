@@ -16,7 +16,7 @@ Uma versão da front end do applicativo pode ser encontrada [aqui](https://dajal
 - rum ambos server e client ao mesmo tempo (recomendado): npm rum dev
 
 Nesse projeto a database só existe localmente. Para que o app funcione corretamente é preciso criar uma batabase no host. Os scripts para criar as tabelas podem ser encomtrados
-no backend> config. > tables_scripts.js
+no backend > config. > tables_scripts.js
 
 Uma versão do server live do server foi deployed pode ser encontrada [aqui](https://aqueous-brook-21441.herokuapp.com/) 
 
